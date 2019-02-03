@@ -1,5 +1,7 @@
 module Data
-  ( BirthDoc(Birth)
+  ( BirthDoc(Birth, bUid, bDate, bName, bFatherUid, bFatherName,
+         bFatherSurname1, bFatherSurname2, bMotherUid, bMotherName,
+         bMotherSurname, bMotherNickname)
   , MarriageDoc
   , DeathDoc
   , date
@@ -14,9 +16,9 @@ date x = parseTimeM True defaultTimeLocale "%Y-%-m-%-d" x :: Maybe Day
 
 data BirthDoc = Birth
   { bUid            :: UUID
-  , bdate           :: Maybe Day
-  , bname           :: String
-  , bfatherUid      :: Maybe UUID
+  , bDate           :: Maybe Day
+  , bName           :: String
+  , bFatherUid      :: Maybe UUID
   , bFatherName     :: String
   , bFatherSurname1 :: String
   , bFatherSurname2 :: String
