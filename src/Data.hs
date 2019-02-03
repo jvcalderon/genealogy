@@ -2,7 +2,8 @@ module Data
   ( BirthDoc(Birth, bUid, bDate, bName, bFatherUid, bFatherName,
          bFatherSurname1, bFatherSurname2, bMotherUid, bMotherName,
          bMotherSurname, bMotherNickname)
-  , MarriageDoc
+  , MarriageDoc(Marriage, mUid, mDate, mUid1, mName1, mSurname11,
+            mSurname12, mUid2, mName2, mSurname21, mSurname22)
   , DeathDoc
   , date
   ) where
@@ -34,16 +35,20 @@ instance Eq BirthDoc where
 
 data MarriageDoc = Marriage
   { mUid       :: UUID
-  , mDate      :: Day
-  , mUid1      :: UUID
+  , mDate      :: Maybe Day
+  , mUid1      :: Maybe UUID
   , mName1     :: String
   , mSurname11 :: String
   , mSurname12 :: String
-  , mUid2      :: UUID
+  , mUid2      :: Maybe UUID
   , mName2     :: String
   , mSurname21 :: String
   , mSurname22 :: String
   } deriving (Show)
+  
+instance Eq MarriageDoc where
+  b1 == b2 = (mUid b1) == (mUid b2)
+  b1 /= b2 = (mUid b1) /= (mUid b2)
 
 data DeathDoc = Death
   { dUid          :: UUID

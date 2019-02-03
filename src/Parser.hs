@@ -1,5 +1,6 @@
 module Parser
   ( getBirth
+  , getMarriage
   ) where
 
 import Data
@@ -36,6 +37,26 @@ getBirth xs = do
              (xs !! 8)
              (xs !! 9)
              (xs !! 10))
+
+getMarriage :: [String] -> IO (Maybe MarriageDoc)
+getMarriage xs = do
+  if length xs /= 10
+    then return Nothing
+    else do
+      uid <- getDUid . head $ xs
+      return $
+        Just
+          (Marriage
+             uid
+             (date (xs !! 1))
+             (fromString (xs !! 2))
+             (xs !! 3)
+             (xs !! 4)
+             (xs !! 5)
+             (fromString (xs !! 6))
+             (xs !! 7)
+             (xs !! 8)
+             (xs !! 9))
 
 docUid :: String -> Either (IO UUID) (Maybe UUID)
 docUid x
