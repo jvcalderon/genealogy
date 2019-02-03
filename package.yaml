@@ -1,0 +1,40 @@
+name:                genealogy
+version:             0.1.0.0
+github:              "jvcalderon/genealogy"
+license:             MIT
+author:              "José Vte. Calderón"
+maintainer:          "jvprod@hotmail.com"
+copyright:           "2019 José Vte. Calderón"
+
+extra-source-files:
+- README.md
+- LICENSE
+
+description:         Please see the README on GitHub at <https://github.com/jvcalderon/genealogy#readme>
+
+dependencies:
+- base >=4.10 && <4.11
+- uuid
+- directory
+- hspec
+- QuickCheck
+- split
+- time
+
+library:
+  source-dirs: src
+  exposed-modules:
+  - Data
+  - Parser
+
+tests:
+  data-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - genealogy
+    - time

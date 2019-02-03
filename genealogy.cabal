@@ -1,0 +1,66 @@
+-- This file has been generated from package.yaml by hpack version 0.20.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: a7a71dfd30e33f01a2bbafb8ed904705b5804371c62c4df2d76e4aa8ede646c9
+
+name:           genealogy
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/jvcalderon/genealogy#readme>
+homepage:       https://github.com/jvcalderon/genealogy#readme
+bug-reports:    https://github.com/jvcalderon/genealogy/issues
+author:         José Vte. Calderón
+maintainer:     jvprod@hotmail.com
+copyright:      2019 José Vte. Calderón
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+
+extra-source-files:
+    LICENSE
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/jvcalderon/genealogy
+
+library
+  hs-source-dirs:
+      src
+  build-depends:
+      QuickCheck
+    , base >=4.10 && <4.11
+    , directory
+    , hspec
+    , split
+    , time
+    , uuid
+  exposed-modules:
+      Data
+      Parser
+  other-modules:
+      Main
+      Paths_genealogy
+  default-language: Haskell2010
+
+test-suite data-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , base >=4.10 && <4.11
+    , directory
+    , genealogy
+    , hspec
+    , split
+    , time
+    , uuid
+  other-modules:
+      DataSpec
+      ParserSpec
+      Paths_genealogy
+  default-language: Haskell2010
