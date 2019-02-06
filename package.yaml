@@ -23,10 +23,11 @@ dependencies:
 - regex-pcre
 
 library:
-  source-dirs: src
+  source-dirs:
+  - src
   exposed-modules:
-  - Data
   - Parser
+  - Data
 
 tests:
   data-test:

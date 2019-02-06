@@ -1,6 +1,7 @@
 module Parser
   ( getBirth
   , getMarriage
+  , getDeath
   ) where
 
 import Data
