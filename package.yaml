@@ -20,6 +20,7 @@ dependencies:
 - QuickCheck
 - split
 - time
+- regex-pcre
 
 library:
   source-dirs: src

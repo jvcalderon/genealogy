@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a7a71dfd30e33f01a2bbafb8ed904705b5804371c62c4df2d76e4aa8ede646c9
+-- hash: 9f595a4976233c07e3b5621996246001b8fe60f130bcb603a896b605854d2c89
 
 name:           genealogy
 version:        0.1.0.0
@@ -33,6 +33,7 @@ library
     , base >=4.10 && <4.11
     , directory
     , hspec
+    , regex-pcre
     , split
     , time
     , uuid
@@ -56,6 +57,7 @@ test-suite data-test
     , directory
     , genealogy
     , hspec
+    , regex-pcre
     , split
     , time
     , uuid

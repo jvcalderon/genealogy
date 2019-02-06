@@ -4,7 +4,8 @@ module Data
          bMotherSurname, bMotherNickname)
   , MarriageDoc(Marriage, mUid, mDate, mUid1, mName1, mSurname11,
             mSurname12, mUid2, mName2, mSurname21, mSurname22)
-  , DeathDoc
+  , DeathDoc(Death, dUid, dPersonUid, dDate, dName, dSurname, dYear,
+         dCause, dAge, dJob, dTestament, dMunicipality, dDescription)
   , date
   ) where
 
@@ -45,22 +46,26 @@ data MarriageDoc = Marriage
   , mSurname21 :: String
   , mSurname22 :: String
   } deriving (Show)
-  
+
 instance Eq MarriageDoc where
-  b1 == b2 = (mUid b1) == (mUid b2)
-  b1 /= b2 = (mUid b1) /= (mUid b2)
+  m1 == m2 = (mUid m1) == (mUid m2)
+  m1 /= m2 = (mUid m1) /= (mUid m2)
 
 data DeathDoc = Death
   { dUid          :: UUID
-  , dPersonUid    :: UUID
-  , dDate         :: Day
+  , dPersonUid    :: Maybe UUID
+  , dDate         :: Maybe Day
   , dName         :: String
   , dSurname      :: String
-  , dYear         :: Int
+  , dYear         :: Maybe Int
   , dCause        :: String
-  , dAge          :: Int
+  , dAge          :: Maybe Int
   , dJob          :: String
   , dTestament    :: String
   , dMunicipality :: String
   , dDescription  :: String
   } deriving (Show)
+
+instance Eq DeathDoc where
+  d1 == d2 = (dUid d1) == (dUid d2)
+  d1 /= d2 = (dUid d1) /= (dUid d2)

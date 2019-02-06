@@ -7,6 +7,7 @@ import Data
 import Data.List.Split
 import Data.UUID
 import Data.UUID.V4
+import Text.Regex.PCRE
 
 getLines :: IO [[String]]
 getLines = do
@@ -58,6 +59,28 @@ getMarriage xs = do
              (xs !! 8)
              (xs !! 9))
 
+getDeath :: [String] -> IO (Maybe DeathDoc)
+getDeath xs = do
+  if length xs /= 12
+    then return Nothing
+    else do
+      uid <- getDUid . head $ xs
+      return $
+        Just
+          (Death
+             uid
+             (fromString $ xs !! 1)
+             (date $ xs !! 2)
+             (xs !! 3)
+             (xs !! 4)
+             (getInt $ xs !! 5)
+             (xs !! 6)
+             (getInt $ xs !! 7)
+             (xs !! 8)
+             (xs !! 9)
+             (xs !! 10)
+             (xs !! 11))
+
 docUid :: String -> Either (IO UUID) (Maybe UUID)
 docUid x
   | (x == "") = Left nextRandom
@@ -70,3 +93,11 @@ lift (Left x)         = x
 
 getDUid :: String -> IO UUID
 getDUid = lift . docUid
+
+getInt :: String -> Maybe Int
+getInt x
+  | isInt x = Just (read x :: Int)
+  | otherwise = Nothing
+  where
+    isInt :: String -> Bool
+    isInt = matchTest (makeRegex "^\\d+$" :: Regex)
