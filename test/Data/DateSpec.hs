@@ -1,4 +1,4 @@
-module DataSpec where
+module Data.DateSpec where
 
 import Control.Exception (evaluate)
 import Data
