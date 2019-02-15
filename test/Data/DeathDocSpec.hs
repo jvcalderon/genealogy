@@ -35,7 +35,7 @@ spec = do
       wrongDeath `shouldBe` Nothing
     it "[getDeathFromStringList] Should return a valid Birth if user provides valid values" $ do
       (dUid $ lift d) `shouldBe` (lift . fromString $ consD "dUid")
-      (dPersonUid $ lift d) `shouldBe` (fromString $ consD "dUid")
+      (dPersonUid $ lift d) `shouldBe` (fromString $ consD "persUid")
       (dDate $ lift d) `shouldBe` Just (ModifiedJulianDay 55479)
       (dName $ lift d) `shouldBe` (consD "name")
       (dSurname $ lift d) `shouldBe` (consD "surname")

@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7e018ebe7e06ac24f5e98ff6d5e93a7cdef1ed1fc2e7c9d16220062ae11ae6d3
+-- hash: 078504875726035fef20f011560c58bbc0b9c822a28bb0e76c8b5714fcdef07c
 
 name:           genealogy
 version:        0.1.0.0
@@ -35,6 +35,7 @@ library
     , hspec
     , regex-pcre
     , split
+    , text
     , time
     , uuid
   exposed-modules:
@@ -45,6 +46,7 @@ library
       Data.Date
       Data.DeathDoc
       Data.MarriageDoc
+      Data.Person
       Data.Utils
       Main
       Paths_genealogy
@@ -64,11 +66,14 @@ test-suite data-test
     , hspec
     , regex-pcre
     , split
+    , text
     , time
     , uuid
   other-modules:
       Data.BirthDocSpec
       Data.DateSpec
+      Data.DeathDocSpec
       Data.MarriageDocSpec
+      Data.PersonSpec
       Paths_genealogy
   default-language: Haskell2010

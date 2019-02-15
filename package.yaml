@@ -21,6 +21,7 @@ dependencies:
 - split
 - time
 - regex-pcre
+- text
 
 library:
   source-dirs:
