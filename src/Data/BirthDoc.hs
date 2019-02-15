@@ -9,6 +9,7 @@ import Data.UUID
 data BirthDoc = Birth
   { bUid            :: UUID
   , bDate           :: Maybe Day
+  , bSonUid         :: Maybe UUID
   , bName           :: String
   , bFatherUid      :: Maybe UUID
   , bFatherName     :: String
@@ -26,7 +27,7 @@ instance Eq BirthDoc where
 
 getBirthFromStringList :: [String] -> IO (Maybe BirthDoc)
 getBirthFromStringList xs = do
-  if length xs /= 11
+  if length xs /= 12
     then return Nothing
     else do
       uid <- getDUid . head $ xs
@@ -35,12 +36,13 @@ getBirthFromStringList xs = do
           (Birth
              uid
              (date (xs !! 1))
-             (xs !! 2)
-             (fromString (xs !! 3))
-             (xs !! 4)
+             (fromString (xs !! 2))
+             (xs !! 3)
+             (fromString (xs !! 4))
              (xs !! 5)
              (xs !! 6)
-             (fromString (xs !! 7))
-             (xs !! 8)
+             (xs !! 7)
+             (fromString (xs !! 8))
              (xs !! 9)
-             (xs !! 10))
+             (xs !! 10)
+             (xs !! 11))
