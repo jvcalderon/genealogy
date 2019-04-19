@@ -30,6 +30,12 @@ library:
   - Parser
   - Data
 
+executables:
+  genealogy:
+    main: Main.hs
+    source-dirs:
+    - src
+
 tests:
   data-test:
     main:                Spec.hs

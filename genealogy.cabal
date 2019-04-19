@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 078504875726035fef20f011560c58bbc0b9c822a28bb0e76c8b5714fcdef07c
+-- hash: 1b78505feb6b0f6e93550a954a133281f027d2b52db0ee460694f2356eff0b9c
 
 name:           genealogy
 version:        0.1.0.0
@@ -49,6 +49,32 @@ library
       Data.Person
       Data.Utils
       Main
+      Paths_genealogy
+  default-language: Haskell2010
+
+executable genealogy
+  main-is: Main.hs
+  hs-source-dirs:
+      src
+  build-depends:
+      QuickCheck
+    , base >=4.10 && <4.11
+    , directory
+    , hspec
+    , regex-pcre
+    , split
+    , text
+    , time
+    , uuid
+  other-modules:
+      Data
+      Data.BirthDoc
+      Data.Date
+      Data.DeathDoc
+      Data.MarriageDoc
+      Data.Person
+      Data.Utils
+      Parser
       Paths_genealogy
   default-language: Haskell2010
 

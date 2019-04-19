@@ -11,46 +11,23 @@ main = do
   args <- getArgs
   hasAllArgs <- checkArgs args
   filesExists <- exists args
-  putStrLn $
-    if hasAllArgs && filesExists
-      then "Ok"
-      else "Three valid files needed as arguments (birthsFile, marriagesFile, deathsFile)"
+  births <- getBirths $ args !! 0
+  marriages <- getMarriages $ args !! 1
+  deaths <- getDeaths $ args !! 2
+  if hasAllArgs && filesExists
+    then putStrLn "OOOK"
+    else putStrLn "Three valid files needed as arguments (birthsFile, marriagesFile, deathsFile)"
   where
     exists = fmap and . mapM doesFileExist
     checkArgs = return . (== 3) . length
-      {-csvFile :: GenParser Char st [[String]]
-csvFile = do
-  result <- many line
-  eof
-  return result-}
-{-
 
-type GenParser tok st = Parsec [tok] st
-
-line :: GenParser Char st [String]
-line = do
-  result <- cells
-  eol
-  return result
-
-cells :: GenParser Char st [String]
-cells = do
-  first <- cellContent
-  next <- remainingCells
-  return (first : next)
-
-remainingCells :: GenParser Char st [String]
-remainingCells =
-  (char ';' >> cells) -- Found comma?  More cells coming
-   <|>
-  (return []) -- No comma?  Return [], no more cells
-
-cellContent :: GenParser Char st String
-cellContent = many (noneOf ",\n")
-
-eol :: GenParser Char st Char
-eol = char '\n'
-
-parseCSV :: String -> Either ParseError [[String]]
-parseCSV input = parse csvFile "(unknown)" input
--}
+prepare :: [IO (Maybe x)] -> IO ([x])
+prepare xs = do
+  rows <- sequence xs
+  return $ (map extractM . filter isValidRow) rows
+  where
+    extractM :: Maybe x -> x
+    extractM (Just x) = x
+    isValidRow :: Maybe x -> Bool
+    isValidRow (Just x) = True
+    isValidRow Nothing  = False
