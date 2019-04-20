@@ -81,6 +81,9 @@ spec = do
       (pSurnames $ death d) `shouldBe` consD "surname"
       (pNickName $ death d) `shouldBe` consD ""
       (pRole $ death d) `shouldBe` Deceased
+    it "[getPersons] Should return a list of people in given docs" $ do
+      let persons = getPersons [lift b] [lift m] [lift d]
+      length persons `shouldBe` 6
   where
     lift :: Maybe a -> a
     lift (Just x) = x

@@ -5,7 +5,7 @@ import Data.Date
 import Data.DeathDoc
 import Data.List.Split
 import Data.MarriageDoc
-import Data.Text
+import Data.Text        hiding (concat)
 import Data.Time
 import Data.Utils
 import Data.UUID
@@ -50,6 +50,10 @@ getPersonsInMarriageDoc x =
 
 getPersonsInDeathDoc :: DeathDoc -> [Person]
 getPersonsInDeathDoc x = [Person (dPersonUid x) (dUid x) (dDate x) (dName x) (dSurname x) "" Deceased]
+
+getPersons :: [BirthDoc] -> [MarriageDoc] -> [DeathDoc] -> [Person]
+getPersons bs ms ds =
+  concat [(bs >>= getPersonsInBirthDoc), (ms >>= getPersonsInMarriageDoc), (ds >>= getPersonsInDeathDoc)]
 
 surnames :: String -> String -> String
 surnames a b = unpack . strip . pack $ a ++ " " ++ b

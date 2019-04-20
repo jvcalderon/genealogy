@@ -29,6 +29,7 @@ library:
   exposed-modules:
   - Parser
   - Data
+  - Uid
 
 executables:
   genealogy:
