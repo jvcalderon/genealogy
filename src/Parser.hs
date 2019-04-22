@@ -5,7 +5,6 @@ import Data.List.Split
 import Data.UUID
 import Data.UUID.V4
 import System.Directory
-import Text.Regex.PCRE
 
 getContent :: ([String] -> d) -> FilePath -> IO [d]
 getContent typeConstruct path = do
@@ -16,11 +15,17 @@ getContent typeConstruct path = do
     toChar = fmap (fmap (\x -> x :: [Char]))
     toString = map (map (\x -> x :: String))
 
-getBirths :: FilePath -> IO [IO (Maybe BirthDoc)]
-getBirths = getContent getBirthFromStringList
+getBirths :: FilePath -> IO [Maybe BirthDoc]
+getBirths fp = do
+  xs <- getContent getBirthFromStringList fp
+  sequence xs
 
-getMarriages :: FilePath -> IO [IO (Maybe MarriageDoc)]
-getMarriages = getContent getMarriageFromStringList
+getMarriages :: FilePath -> IO [Maybe MarriageDoc]
+getMarriages fp = do
+  xs <- getContent getMarriageFromStringList fp
+  sequence xs
 
-getDeaths :: FilePath -> IO [IO (Maybe DeathDoc)]
-getDeaths = getContent getDeathFromStringList
+getDeaths :: FilePath -> IO [Maybe DeathDoc]
+getDeaths fp = do
+  xs <- getContent getDeathFromStringList fp
+  sequence xs

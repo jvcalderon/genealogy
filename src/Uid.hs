@@ -3,6 +3,8 @@ module Uid where
 import Data
 import Data.UUID.V4
 
+setUuid = setUuidToAllDeaths
+
 -- Each person just can die once
 setUuidToAllDeaths :: [Person] -> IO ([Person])
 setUuidToAllDeaths xs = do
