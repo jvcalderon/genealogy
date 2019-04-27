@@ -38,7 +38,7 @@ spec = do
            ]) `shouldBe`
         "Arm"
     it
-      "[justOneDie] People just can die one. Two roles 'Deceased' for same person is impossible. It must be removed from list" $ do
+      "[justOneDie] People just can die once. Two roles 'Deceased' for same person is impossible. It must be removed from list" $ do
       length
         (justOneDie
            (Person
@@ -57,6 +57,28 @@ spec = do
                "Ca:r,r. B."
                ""
                Deceased
+           ]) `shouldBe`
+        0
+    it
+      "[justOneBorn] People just can born once. Two roles 'Son' for same person is impossible. It must be removed from list" $ do
+      length
+        (justOneBorn
+           (Person
+              (Just $ returnM . fromString $ "4187f6e1-97b5-4cd9-bd48-1a397f78cc55")
+              (returnM . fromString $ "4187f6e4-97b5-4cd9-bd48-1a397f78cc55")
+              (date "2000-12-12")
+              "Antonio Armando"
+              "Carrascosa Bedulia"
+              "El Mozo"
+              Son)
+           [ Person
+               (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
+               (returnM . fromString $ "4187f6e6-97b6-4cd9-bd48-1a397f78cc55")
+               (date "2018-12-12")
+               "Arm"
+               "Ca:r,r. B."
+               ""
+               Son
            ]) `shouldBe`
         0
   where

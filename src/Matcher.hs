@@ -9,9 +9,16 @@ import Text.Regex.PCRE.Wrap
 getMatches :: Person -> [Person] -> [Person]
 getMatches x = justOneDie x . matchesByNameOrSurname x
 
+once :: Role -> Person -> [Person] -> [Person]
+once r p = filter (\x -> pRole x /= r || pRole p /= r)
+
 -- People can't die twice
 justOneDie :: Person -> [Person] -> [Person]
-justOneDie x = filter (\p -> pRole p /= Deceased || pRole x /= Deceased)
+justOneDie = once Deceased
+
+-- People can't born twice
+justOneBorn :: Person -> [Person] -> [Person]
+justOneBorn = once Son
 
 -- Get people who matches by name or surnames
 matchesByNameOrSurname :: Person -> [Person] -> [Person]
