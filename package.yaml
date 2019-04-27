@@ -29,8 +29,8 @@ library:
   exposed-modules:
   - Parser
   - Data
+  - Matcher
   - Uid
-  - Tools
 
 executables:
   genealogy:

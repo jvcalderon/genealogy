@@ -32,6 +32,10 @@ spec = do
       (pUid $ deathList !! 0) `shouldNotBe` Nothing
       (pUid $ deathList !! 1) `shouldNotBe` Nothing
       (pUid $ deathList !! 0) `shouldNotBe` (pUid $ deathList !! 1)
+    it "[setUuidToAllDeaths] should set uid to all decesaed if UID does not exist yet" $ do
+      (pUid $ deathList !! 0) `shouldNotBe` Nothing
+      (pUid $ deathList !! 1) `shouldNotBe` Nothing
+      (pUid $ deathList !! 0) `shouldNotBe` (pUid $ deathList !! 1)
   where
     returnM :: Maybe a -> a
     returnM (Just x) = x

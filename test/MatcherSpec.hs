@@ -1,13 +1,13 @@
-module ToolsSpec where
+module MatcherSpec where
 
 import Data
 import Data.UUID
+import Matcher
 import Test.Hspec
 import Test.QuickCheck
-import Tools
 
 spec = do
-  describe "Provides some tools to handle common actions" $ do
+  describe "Match people who can be candidates to be the same person" $ do
     it "[getMatches] Gets persons who matches by name or surname" $ do
       (pName . head)
         (getMatches
@@ -15,7 +15,7 @@ spec = do
               Nothing
               (returnM . fromString $ "4187f6e4-97b5-4cd9-bd48-1a397f78cc55")
               (date "2000-12-12")
-              "Armando"
+              "Antonio Armando"
               "Carrascosa Bedulia"
               "El Mozo"
               Deceased)
@@ -24,7 +24,7 @@ spec = do
                (returnM . fromString $ "4187f6e6-97b5-4cd9-bd48-1a397f78cc55")
                (date "2018-12-12")
                "Arm"
-               "C. bedulia"
+               "Ca:r,r. B."
                ""
                Bridegroom
            , Person
