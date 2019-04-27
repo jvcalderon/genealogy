@@ -81,6 +81,28 @@ spec = do
                Son
            ]) `shouldBe`
         0
+    it
+      "[justOnceInDoc] People can't appear once in the same document" $ do
+      length
+        (justOnceInDoc
+           (Person
+              (Just $ returnM . fromString $ "4187f6e1-97b5-4cd9-bd48-1a397f78cc55")
+              (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
+              (date "2000-12-12")
+              "Antonio Armando"
+              "Carrascosa Bedulia"
+              "El Mozo"
+              Son)
+           [ Person
+               (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
+               (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
+               (date "2000-12-12")
+               "Arm"
+               "Ca:r,r. B."
+               ""
+               Father
+           ]) `shouldBe`
+        0
   where
     returnM :: Maybe a -> a
     returnM (Just x) = x

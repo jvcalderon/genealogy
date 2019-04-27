@@ -7,7 +7,7 @@ import Data.UUID.V4
 import Text.Regex.PCRE.Wrap
 
 getMatches :: Person -> [Person] -> [Person]
-getMatches x = justOneDie x . matchesByNameOrSurname x
+getMatches x = justOnceInDoc x . justOneBorn x . justOneDie x . matchesByNameOrSurname x
 
 once :: Role -> Person -> [Person] -> [Person]
 once r p = filter (\x -> pRole x /= r || pRole p /= r)
@@ -19,6 +19,10 @@ justOneDie = once Deceased
 -- People can't born twice
 justOneBorn :: Person -> [Person] -> [Person]
 justOneBorn = once Son
+
+-- People just can appear once in the same document
+justOnceInDoc :: Person -> [Person] -> [Person]
+justOnceInDoc x = filter $ \p -> pDocUid p /= pDocUid x
 
 -- Get people who matches by name or surnames
 matchesByNameOrSurname :: Person -> [Person] -> [Person]
