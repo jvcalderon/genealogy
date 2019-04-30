@@ -10,7 +10,12 @@ import Text.Regex.PCRE.Wrap
 
 getMatches :: Person -> [Person] -> [Person]
 getMatches x =
+  maxLive x .
   incompatibleRoles x . inCronOrder x . justOnceInDoc x . justOneBorn x . justOneDie x . matchesByNameOrSurname x
+
+docDate :: Maybe Day -> Day
+docDate (Just x) = x
+docDate Nothing  = docDate $ date "10000-01-01"
 
 once :: Role -> Person -> [Person] -> [Person]
 once r p = filter (\x -> pRole x /= r || pRole p /= r)
@@ -31,9 +36,6 @@ justOnceInDoc x = filter $ \p -> pDocUid p /= pDocUid x
 inCronOrder :: Person -> [Person] -> [Person]
 inCronOrder x = filter $ inCronFilter x
   where
-    docDate :: Maybe Day -> Day
-    docDate (Just x) = x
-    docDate Nothing  = docDate $ date "10000-01-01"
     inCronFilter :: Person -> Person -> Bool
     inCronFilter a b = birthChecker a b || birthChecker b a || deathChecker a b || deathChecker b a
     checker :: Role -> (Day -> Day -> Bool) -> Person -> Person -> Bool
@@ -65,3 +67,7 @@ incompatibleRoles x = filter $ checker x
       | pRole a == Father = pRole b /= Mother
       | pRole a == Mother = pRole b /= Father
       | otherwise = True
+
+-- People don't live more than 110 years
+maxLive :: Person -> [Person] -> [Person]
+maxLive x = filter $ \p -> (abs $ diffDays (docDate $ pDate p) (docDate $ pDate x)) < 365 * 110
