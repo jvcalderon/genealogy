@@ -81,8 +81,7 @@ spec = do
                Son
            ]) `shouldBe`
         0
-    it
-      "[justOnceInDoc] People can't appear once in the same document" $ do
+    it "[justOnceInDoc] People can't appear once in the same document" $ do
       length
         (justOnceInDoc
            (Person
@@ -101,6 +100,48 @@ spec = do
                "Ca:r,r. B."
                ""
                Father
+           ]) `shouldBe`
+        0
+    it "[inCronOrder] People can't be in documents before their birth date" $ do
+      length
+        (inCronOrder
+           (Person
+              Nothing
+              (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
+              (date "1900-01-01")
+              "Antonio Armando"
+              "Carrascosa Bedulia"
+              "El Mozo"
+              Son)
+           [ Person
+               (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
+               (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
+               (date "1890-01-01")
+               "Arm"
+               "Ca:r,r. B."
+               ""
+               Father
+           ]) `shouldBe`
+        0
+    it "[inCronOrder] People can't be in documents after their death" $ do
+      length
+        (inCronOrder
+           (Person
+              Nothing
+              (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
+              (date "1990-01-02")
+              "Antonio Armando"
+              "Carrascosa Bedulia"
+              "El Mozo"
+              Father)
+           [ Person
+               (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
+               (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
+               (date "1990-01-01")
+               "Arm"
+               "Ca:r,r. B."
+               ""
+               Deceased
            ]) `shouldBe`
         0
   where
