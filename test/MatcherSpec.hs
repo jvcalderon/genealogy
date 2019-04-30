@@ -144,6 +144,27 @@ spec = do
                Deceased
            ]) `shouldBe`
         0
+    it "[incompatibleRoles] A father can't be a mother" $ do
+      length
+        (incompatibleRoles
+           (Person
+              Nothing
+              (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
+              (date "1990-01-02")
+              "Antonio Armando"
+              "Carrascosa Bedulia"
+              "El Mozo"
+              Father)
+           [ Person
+               (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
+               (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
+               (date "1990-01-01")
+               "Arm"
+               "Ca:r,r. B."
+               ""
+               Mother
+           ]) `shouldBe`
+        0
   where
     returnM :: Maybe a -> a
     returnM (Just x) = x

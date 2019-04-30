@@ -9,7 +9,8 @@ import Data.UUID.V4
 import Text.Regex.PCRE.Wrap
 
 getMatches :: Person -> [Person] -> [Person]
-getMatches x = inCronOrder x . justOnceInDoc x . justOneBorn x . justOneDie x . matchesByNameOrSurname x
+getMatches x =
+  incompatibleRoles x . inCronOrder x . justOnceInDoc x . justOneBorn x . justOneDie x . matchesByNameOrSurname x
 
 once :: Role -> Person -> [Person] -> [Person]
 once r p = filter (\x -> pRole x /= r || pRole p /= r)
@@ -54,3 +55,13 @@ matchesByNameOrSurname x xs = filter (\p -> name x =~ name p || surnames x =~ su
     surnames = regex . sanitize . pSurnames
     withUid :: [Person] -> [Person]
     withUid = filter $ \x -> pUid x /= Nothing
+
+-- A father can't be a mother
+incompatibleRoles :: Person -> [Person] -> [Person]
+incompatibleRoles x = filter $ checker x
+  where
+    checker :: Person -> Person -> Bool
+    checker a b
+      | pRole a == Father = pRole b /= Mother
+      | pRole a == Mother = pRole b /= Father
+      | otherwise = True
