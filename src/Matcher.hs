@@ -11,7 +11,8 @@ import Text.Regex.PCRE.Wrap
 getMatches :: Person -> [Person] -> [Person]
 getMatches x =
   maxLive x .
-  incompatibleRoles x . inCronOrder x . justOnceInDoc x . justOneBorn x . justOneDie x . matchesByNameOrSurname x
+  incompatibleRoles x .
+  inCronOrder x . justOnceInDoc x . justOneBorn x . justOneDie x . matchesByNameOrSurname x . haveUid
 
 docDate :: Maybe Day -> Day
 docDate (Just x) = x
@@ -71,3 +72,7 @@ incompatibleRoles x = filter $ checker x
 -- People don't live more than 110 years
 maxLive :: Person -> [Person] -> [Person]
 maxLive x = filter $ \p -> (abs $ diffDays (docDate $ pDate p) (docDate $ pDate x)) < 365 * 110
+
+-- Only people with already assigned Uid can be used to match
+haveUid :: [Person] -> [Person]
+haveUid = filter $ \x -> pUid x /= Nothing

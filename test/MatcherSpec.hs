@@ -186,6 +186,27 @@ spec = do
                Father
            ]) `shouldBe`
         0
+    it "[haveUid] Discards people without UID" $ do
+      length
+        (haveUid
+           [ Person
+               (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
+               (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
+               (date "2010-01-01")
+               "Arm"
+               "Ca:r,r. B."
+               ""
+               Father
+           , Person
+               Nothing
+               (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
+               (date "1900-01-01")
+               "Antonio Armando"
+               "Carrascosa Bedulia"
+               "El Mozo"
+               Son
+           ]) `shouldBe`
+        1
   where
     returnM :: Maybe a -> a
     returnM (Just x) = x
