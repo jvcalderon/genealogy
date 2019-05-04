@@ -17,7 +17,7 @@ main = do
   marriages <- getMarriages $ args !! 1
   deaths <- getDeaths $ args !! 2
   persons <- return $ getPersons (prepare births) (prepare marriages) (prepare deaths)
-  result <- setUuid persons
+  result <- setUids persons
   if hasAllArgs && filesExists
     then putStrLn $ show result
     else putStrLn "Three valid files needed as arguments (birthsFile, marriagesFile, deathsFile)"

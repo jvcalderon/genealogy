@@ -8,7 +8,7 @@ import Test.QuickCheck
 
 spec = do
   describe "Match people who can be candidates to be the same person" $ do
-    it "[getMatches] Gets persons who matches by name or surname" $ do
+    it "[matchesByNameOrSurname] Gets persons who matches by name or surname" $ do
       (pName . head)
         (matchesByNameOrSurname
            (Person
@@ -205,6 +205,27 @@ spec = do
                "Carrascosa Bedulia"
                "El Mozo"
                Son
+           ]) `shouldBe`
+        1
+    it "[getMatches] Gets persons who matches by name or surname and applies match criteria" $ do
+      length
+        (getMatches
+           (Person
+              Nothing
+              (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
+              (date "1900-01-01")
+              "Antonio Armando"
+              "Carrascosa Bedulia"
+              "El Mozo"
+              Son)
+           [ Person
+               (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
+               (returnM . fromString $ "afabb4e3-7094-4131-adb3-7e5ed40859bb")
+               (date "1920-01-01")
+               "Arm"
+               "Ca:r,r. B."
+               ""
+               Father
            ]) `shouldBe`
         1
   where

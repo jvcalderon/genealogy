@@ -38,15 +38,17 @@ inCronOrder :: Person -> [Person] -> [Person]
 inCronOrder x = filter $ inCronFilter x
   where
     inCronFilter :: Person -> Person -> Bool
-    inCronFilter a b = birthChecker a b || birthChecker b a || deathChecker a b || deathChecker b a
+    inCronFilter a b =
+      all (not . hasLimitRoles) [a, b] || birthChecker a b || birthChecker b a || deathChecker a b || deathChecker b a
     checker :: Role -> (Day -> Day -> Bool) -> Person -> Person -> Bool
     checker role fn a b = pRole a == role && fn (docDate $ pDate a) (docDate $ pDate b)
     deathChecker = checker Deceased (>)
     birthChecker = checker Son (<)
+    hasLimitRoles x = pRole x == Deceased || pRole x == Son
 
 -- Get people who matches by name or surnames
 matchesByNameOrSurname :: Person -> [Person] -> [Person]
-matchesByNameOrSurname x xs = filter (\p -> name x =~ name p || surnames x =~ surnames p) (withUid xs)
+matchesByNameOrSurname x xs = filter (\p -> match x p || match p x) (withUid xs)
   where
     regex :: String -> String
     regex = intercalate "|" . splitOn " " . ("(?i)" ++)
@@ -58,6 +60,8 @@ matchesByNameOrSurname x xs = filter (\p -> name x =~ name p || surnames x =~ su
     surnames = regex . sanitize . pSurnames
     withUid :: [Person] -> [Person]
     withUid = filter $ \x -> pUid x /= Nothing
+    match :: Person -> Person -> Bool
+    match a b = name a =~ name b || surnames a =~ surnames b
 
 -- A father can't be a mother
 incompatibleRoles :: Person -> [Person] -> [Person]
