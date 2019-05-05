@@ -5,7 +5,7 @@ import Data.Date
 import Data.DeathDoc
 import Data.List.Split
 import Data.MarriageDoc
-import Data.Text        hiding (concat)
+import Data.Text        hiding (concat, map, filter, head, splitOn)
 import Data.Time
 import Data.Utils
 import Data.UUID
@@ -57,3 +57,13 @@ getPersons bs ms ds =
 
 surnames :: String -> String -> String
 surnames a b = unpack . strip . pack $ a ++ " " ++ b
+
+getDeathsFromPersonList :: [Person] -> [DeathDoc]
+getDeathsFromPersonList = map (mapper) . filter (\x -> pRole x == Deceased)
+  where
+    year :: Person -> Int
+    year = (\x -> read x :: Int) . head . splitOn "-" . showGregorian . extractM . pDate
+    extractM :: Maybe x -> x
+    extractM (Just x) = x
+    mapper :: Person -> DeathDoc
+    mapper x = Death (pDocUid x) (pUid x) (pDate x) (pName x) (pSurnames x) (Just $ year x) "" Nothing "" "" "" ""

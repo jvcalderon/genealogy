@@ -16,6 +16,7 @@ module Data
   , getPersonsInMarriageDoc
   , getPersonsInDeathDoc
   , getPersons
+  , getDeathsFromPersonList
   , date
   ) where
 
