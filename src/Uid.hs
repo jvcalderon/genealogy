@@ -3,6 +3,7 @@ module Uid where
 import Data
 import Data.UUID.V4
 import Matcher
+import System.ProgressBar
 
 assign :: [Person] -> Person -> IO Person
 assign xs x = do
@@ -17,13 +18,20 @@ assign xs x = do
 
 setUids :: [Person] -> IO [Person]
 setUids xs = do
-  assignAll [] xs
+  (pr, _) <- startProgress percentage exact 50 (Progress 0 (toInteger . length $ xs))
+  assignAll [] xs pr 0
   where
-    assignAll :: [Person] -> [Person] -> IO [Person]
-    assignAll xs [] = return xs
-    assignAll processed remain = do
+    assignAll :: [Person] -> [Person] -> ProgressRef -> Int -> IO [Person]
+    assignAll xs [] _ _ = return xs
+    assignAll processed remain pr count = do
       uid <- return . pUid . head $ remain
       x <- assign (processed ++ tail remain) (head remain)
+      c <-
+        if count < length processed
+          then do
+            incProgress pr 1
+            return $ count + 1
+          else return count
       if uid == Nothing && pUid x /= Nothing
-        then assignAll [] (processed ++ tail remain ++ [x]) -- If uuid is assigned, check process must start from the beginning
-        else assignAll (x : processed) (tail remain)
+        then assignAll [] (processed ++ tail remain ++ [x]) pr c -- If uuid is assigned, check process must start from the beginning
+        else assignAll (x : processed) (tail remain) pr c

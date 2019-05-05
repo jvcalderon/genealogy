@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7c2c8708a8020e93b88de436dbbf0b37abbeae2bce875d44ef49746bb0a814a7
+-- hash: e225177d72c3f7ea6b8caa2cd931ee676632a07245cf63e4efecb59072bd2f56
 
 name:           genealogy
 version:        0.1.0.0
@@ -35,6 +35,7 @@ library
     , hspec
     , regex-pcre
     , split
+    , terminal-progress-bar
     , text
     , time
     , uuid
@@ -65,6 +66,7 @@ executable genealogy
     , hspec
     , regex-pcre
     , split
+    , terminal-progress-bar
     , text
     , time
     , uuid
@@ -96,6 +98,7 @@ test-suite data-test
     , hspec
     , regex-pcre
     , split
+    , terminal-progress-bar
     , text
     , time
     , uuid
