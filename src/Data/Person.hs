@@ -5,7 +5,7 @@ import Data.Date
 import Data.DeathDoc
 import Data.List.Split
 import Data.MarriageDoc
-import Data.Text        hiding (concat, map, filter, head, splitOn)
+import Data.Text        hiding (concat, filter, head, map, splitOn)
 import Data.Time
 import Data.Utils
 import Data.UUID
