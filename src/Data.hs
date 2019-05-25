@@ -18,6 +18,7 @@ module Data
   , getPersons
   , getDeathsFromPersonList
   , date
+  , dateStr
   ) where
 
 import Data.BirthDoc

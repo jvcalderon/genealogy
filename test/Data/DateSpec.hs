@@ -13,3 +13,6 @@ spec = do
       date "2019-01-02" `shouldBe` Just (ModifiedJulianDay 58485)
       date "2019-11-31" `shouldBe` Nothing
       date "2019/11/31" `shouldBe` Nothing
+    it "[dateStr] Gets a day as string" $ do
+      dateStr (ModifiedJulianDay 58817) `shouldBe` "30/11/2019"
+      dateStr (ModifiedJulianDay 58485) `shouldBe` "02/01/2019"
