@@ -17,26 +17,26 @@ returnDate :: Maybe Day -> String
 returnDate (Just x) = dateStr x
 returnDate Nothing  = ""
 
-strRowFactory :: Person -> String
-strRowFactory x =
-  intercalate
-    ";"
-    [ toString . pDocUid $ x
-    , returnUid . pUid $ x
-    , returnDate . pDate $ x
-    , pName x
-    , pSurnames x
-    , ""
-    , ""
-    , ""
-    , ""
-    , ""
-    , ""
-    , ""
-    ]
-
 getDeathFileContent :: [Person] -> [String]
-getDeathFileContent = map strRowFactory . filter (\x -> pRole x == Deceased)
+getDeathFileContent = map deathFactory . filter (\x -> pRole x == Deceased)
+  where
+    deathFactory :: Person -> String
+    deathFactory x =
+      intercalate
+        ";"
+        [ toString . pDocUid $ x
+        , returnUid . pUid $ x
+        , returnDate . pDate $ x
+        , pName x
+        , pSurnames x
+        , ""
+        , ""
+        , ""
+        , ""
+        , ""
+        , ""
+        , ""
+        ]
 
 getBirthsFileContent :: [Person] -> [String]
 getBirthsFileContent xs =
