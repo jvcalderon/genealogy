@@ -15,7 +15,7 @@ spec = do
       [ (Person
            (fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
            (returnM . fromString $ "4187f6e4-97b5-4cd9-bd48-1a397f78cc55")
-           (date "1900-01-01")
+           (date "01/01/1900")
            "Armando"
            "Carrascosa Bedulia"
            "El Mozo"
@@ -24,7 +24,7 @@ spec = do
       (Person
          Nothing
          (returnM . fromString $ "4187f6e4-97b5-4cd9-bd48-1a397f78cc56")
-         (date "1890-01-01")
+         (date "01/01/1890")
          "A."
          "Carrascosa B."
          "El Mozo"
@@ -35,7 +35,7 @@ spec = do
       [ Person
           (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
           (returnM . fromString $ "afabb4e3-7094-4131-adb3-7e5ed40859bb")
-          (date "1920-01-01")
+          (date "01/01/1920")
           "Arm"
           "Ca:r,r. B."
           ""
@@ -44,7 +44,7 @@ spec = do
       (Person
          (Just $ returnM . fromString $ "d3d4e574-1d62-495e-bc12-5b9abd3556f0")
          (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
-         (date "1900-01-01")
+         (date "01/01/1900")
          "Antonio Armando"
          "Carrascosa Bedulia"
          "El Mozo"
@@ -56,7 +56,7 @@ spec = do
       [ (Person
            Nothing
            (returnM . fromString $ "b0edccbc-7161-4eae-812f-aa4b37911daf")
-           (date "1890-01-01")
+           (date "01/01/1890")
            "1 Arm."
            "Carrascosa B."
            "El Mozo"
@@ -64,7 +64,7 @@ spec = do
       , (Person
            Nothing
            (returnM . fromString $ "ea9ce932-236c-42f2-87d0-9951e9a1ca40")
-           (date "1890-01-01")
+           (date "01/01/1890")
            "2 Mari. Luisa"
            "Zamorano Sal."
            "La Moza"
@@ -73,7 +73,7 @@ spec = do
       , (Person
            (fromString $ "0493f00c-b786-4b18-b2b1-5430c4e0b7ef")
            (returnM . fromString $ "3ef5d425-f30d-4b41-aaa0-3c33a697b9d5")
-           (date "1900-01-01")
+           (date "01/01/1900")
            "3 Armando"
            "Carrascosa Zamorano"
            ""
@@ -81,7 +81,7 @@ spec = do
       , (Person
            Nothing
            (returnM . fromString $ "3ef5d425-f30d-4b41-aaa0-3c33a697b9d5")
-           (date "1900-01-01")
+           (date "01/01/1900")
            "4 Armando"
            "Carrascosa Bedulia"
            "El Mozo"
@@ -89,7 +89,7 @@ spec = do
       , (Person
            Nothing
            (returnM . fromString $ "3ef5d425-f30d-4b41-aaa0-3c33a697b9d5")
-           (date "1900-01-01")
+           (date "01/01/1900")
            "5 María Luisa"
            "Zamorano Salamanca"
            "La Chula"
@@ -98,7 +98,7 @@ spec = do
       , (Person
            Nothing
            (returnM . fromString $ "4187f6e4-97b5-4cd9-bd48-1a397f78cc57")
-           (date "1990-01-01")
+           (date "01/01/1900")
            "6 A."
            "Carrascosa B."
            ""
@@ -106,7 +106,7 @@ spec = do
       , (Person
            Nothing
            (returnM . fromString $ "4187f6e4-97b5-4cd9-bd48-1a397f78cc58")
-           (date "2010-01-01")
+           (date "01/01/2010")
            "7 Arm."
            "Carrascosa"
            "El Mozo"

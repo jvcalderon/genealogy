@@ -11,7 +11,7 @@ import Test.QuickCheck
 consM :: String -> String
 consM x
   | x == "dUid" = "4187f6e4-97b5-4cd9-bd48-1a397f78cc55"
-  | x == "dDate" = "2010-10-10"
+  | x == "dDate" = "10/10/2010"
   | x == "uid1" = "90921800-7c75-490a-9cbf-a4f0b22de391"
   | x == "name1" = "Romeo"
   | x == "sname11" = "Montesco"

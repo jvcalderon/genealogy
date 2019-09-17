@@ -1,12 +1,14 @@
 module Main where
 
 import Control.Monad
-import Parser
 import Data
-import Uid
+import Data.List
+import Parser
 import System.Directory
 import System.Environment
 import System.IO
+import Uid
+import Writer
 
 main :: IO ()
 main = do
@@ -19,7 +21,10 @@ main = do
   persons <- return $ getPersons (prepare births) (prepare marriages) (prepare deaths)
   result <- setUids persons
   if hasAllArgs && filesExists
-    then putStrLn $ show result
+    then do
+      writeFile "./births.o.txt" (intercalate "\n" $ getBirthsFileContent result)
+      writeFile "./marriages.o.txt" (intercalate "\n" $ getMarriagesFileContent result)
+      writeFile "./deaths.o.txt" (intercalate "\n" $ getDeathFileContent result)
     else putStrLn "Three valid files needed as arguments (birthsFile, marriagesFile, deathsFile)"
   where
     exists = fmap and . mapM doesFileExist
@@ -33,4 +38,3 @@ prepare = (map extractM . filter isValidRow)
     isValidRow :: Maybe x -> Bool
     isValidRow (Just x) = True
     isValidRow Nothing  = False
-    

@@ -17,7 +17,7 @@ spec = do
     getBirthFromStringList
       (map
          consB
-         ["dUid", "dDate", "bSonUid", "name", "fUid", "fName", "fSurn", "fSurn2", "mUid", "mName", "mSurn", "mNick"])
+         ["dUid", "bSonUid", "dDate", "name", "fUid", "fName", "fSurn", "fSurn2", "mUid", "mName", "mSurn", "mNick"])
   m <-
     runIO $
     getMarriageFromStringList
@@ -89,7 +89,7 @@ spec = do
         [ (Person
              (fromString $ "4187f6e1-97b5-4cd9-bd48-1a397f78cc55")
              (returnM . fromString $ "4187f6e4-97b5-4cd9-bd48-1a397f78cc55")
-             (date "2000-12-12")
+             (date "12/12/2000")
              "Antonio Armando"
              "Carrascosa Bedulia"
              "El Mozo"
@@ -97,7 +97,7 @@ spec = do
         , Person
             (fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
             (returnM . fromString $ "4187f6e6-97b5-4cd9-bd48-1a397f78cc55")
-            (date "2018-12-12")
+            (date "12/12/2018")
             "Arm"
             "Ca:r,r. B."
             ""
@@ -105,7 +105,7 @@ spec = do
         , Person
             (fromString $ "4187f6e3-97b5-4cd9-bd48-1a397f78cc55")
             (returnM . fromString $ "4187f6e7-97b5-4cd9-bd48-1a397f78cc55")
-            (date "2018-12-12")
+            (date "12/12/2018")
             "Pepo"
             "Pintilla"
             ""
@@ -114,7 +114,7 @@ spec = do
         [ (Death
              (returnM . fromString $ "4187f6e4-97b5-4cd9-bd48-1a397f78cc55")
              (fromString "4187f6e1-97b5-4cd9-bd48-1a397f78cc55")
-             (date "2000-12-12")
+             (date "12/12/2000")
              "Antonio Armando"
              "Carrascosa Bedulia"
              (Just 2000)

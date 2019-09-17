@@ -40,7 +40,8 @@ getDeathFileContent = map deathFactory . filter (\x -> pRole x == Deceased)
 
 getBirthsFileContent :: [Person] -> [String]
 getBirthsFileContent xs =
-  map birthFactory $ groupBy (on (==) pDocUid) (filter (\x -> pRole x `elem` [Son, Mother, Father]) xs)
+  map birthFactory $
+  filter (\xs -> length xs == 3) $ groupBy (on (==) pDocUid) (filter (\x -> pRole x `elem` [Son, Mother, Father]) xs)
   where
     birthFactory :: [Person] -> String
     birthFactory xs =
@@ -67,3 +68,21 @@ getBirthsFileContent xs =
     mother = getByRole Mother
     son :: [Person] -> Person
     son = getByRole Son
+
+getMarriagesFileContent :: [Person] -> [String]
+getMarriagesFileContent xs = map marriageFactory $ groupBy (on (==) pDocUid) (filter (\x -> pRole x == Bridegroom) xs)
+  where
+    marriageFactory :: [Person] -> String
+    marriageFactory xs =
+      intercalate
+        ";"
+        [ toString . pDocUid . head $ xs
+        , returnDate . pDate . head $ xs
+        , returnUid . pUid . head $ xs
+        , pName . head $ xs
+        , pSurnames . head $ xs
+        , ""
+        , returnUid . pUid . last $ xs
+        , pName . last $ xs
+        , ""
+        ]

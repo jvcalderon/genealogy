@@ -11,8 +11,8 @@ import Test.QuickCheck
 consB :: String -> String
 consB x
   | x == "dUid" = "61920c27-9f55-4d69-92e0-538824bdd349"
-  | x == "dDate" = "2010-10-10"
   | x == "bSonUid" = "7d3830b2-2eb2-11e9-9659-d663bd873d93"
+  | x == "dDate" = "10/10/2010"
   | x == "name" = "Pedro"
   | x == "fUid" = "3e62e2a9-6d56-43ec-9047-3aec2121c3a9"
   | x == "fName" = "Manolito"
@@ -29,7 +29,7 @@ spec = do
   b <-
     runIO $
     getBirthFromStringList
-      (map consB ["dUid", "dDate", "bSonUid", "name", "fUid", "fName", "fSurn", "fSurn2", "mUid", "mName", "mSurn", "mNick"])
+      (map consB ["dUid", "bSonUid", "dDate", "name", "fUid", "fName", "fSurn", "fSurn2", "mUid", "mName", "mSurn", "mNick"])
   describe "Birth doc data type" $ do
     it "[getBirthFromStringList] Should return Nothing if user doesn`t provide valid values" $ do
       wrongBirth `shouldBe` Nothing

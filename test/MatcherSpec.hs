@@ -14,7 +14,7 @@ spec = do
            (Person
               (Just $ returnM . fromString $ "4187f6e1-97b5-4cd9-bd48-1a397f78cc55")
               (returnM . fromString $ "4187f6e4-97b5-4cd9-bd48-1a397f78cc55")
-              (date "2000-12-12")
+              (date "12/12/2000")
               "Antonio Armando"
               "Carrascosa Bedulia"
               "El Mozo"
@@ -22,7 +22,7 @@ spec = do
            [ Person
                (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
                (returnM . fromString $ "4187f6e6-97b5-4cd9-bd48-1a397f78cc55")
-               (date "2018-12-12")
+               (date "12/12/2018")
                "Arm"
                "Ca:r,r. B."
                ""
@@ -30,7 +30,7 @@ spec = do
            , Person
                (Just $ returnM . fromString $ "4187f6e3-97b5-4cd9-bd48-1a397f78cc55")
                (returnM . fromString $ "4187f6e7-97b5-4cd9-bd48-1a397f78cc55")
-               (date "2018-12-12")
+               (date "12/12/2018")
                "Pepo"
                "Pintilla"
                ""
@@ -44,7 +44,7 @@ spec = do
            (Person
               (Just $ returnM . fromString $ "4187f6e1-97b5-4cd9-bd48-1a397f78cc55")
               (returnM . fromString $ "4187f6e4-97b5-4cd9-bd48-1a397f78cc55")
-              (date "2000-12-12")
+              (date "12/12/2000")
               "Antonio Armando"
               "Carrascosa Bedulia"
               "El Mozo"
@@ -52,7 +52,7 @@ spec = do
            [ Person
                (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
                (returnM . fromString $ "4187f6e6-97b6-4cd9-bd48-1a397f78cc55")
-               (date "2018-12-12")
+               (date "12/12/2018")
                "Arm"
                "Ca:r,r. B."
                ""
@@ -66,7 +66,7 @@ spec = do
            (Person
               (Just $ returnM . fromString $ "4187f6e1-97b5-4cd9-bd48-1a397f78cc55")
               (returnM . fromString $ "4187f6e4-97b5-4cd9-bd48-1a397f78cc55")
-              (date "2000-12-12")
+              (date "12/12/2000")
               "Antonio Armando"
               "Carrascosa Bedulia"
               "El Mozo"
@@ -74,7 +74,7 @@ spec = do
            [ Person
                (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
                (returnM . fromString $ "4187f6e6-97b6-4cd9-bd48-1a397f78cc55")
-               (date "2018-12-12")
+               (date "12/12/2018")
                "Arm"
                "Ca:r,r. B."
                ""
@@ -87,7 +87,7 @@ spec = do
            (Person
               (Just $ returnM . fromString $ "4187f6e1-97b5-4cd9-bd48-1a397f78cc55")
               (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
-              (date "2000-12-12")
+              (date "12/12/2000")
               "Antonio Armando"
               "Carrascosa Bedulia"
               "El Mozo"
@@ -95,7 +95,7 @@ spec = do
            [ Person
                (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
                (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
-               (date "2000-12-12")
+               (date "12/12/2000")
                "Arm"
                "Ca:r,r. B."
                ""
@@ -108,7 +108,7 @@ spec = do
            (Person
               Nothing
               (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
-              (date "1900-01-01")
+              (date "01/01/1900")
               "Antonio Armando"
               "Carrascosa Bedulia"
               "El Mozo"
@@ -116,7 +116,7 @@ spec = do
            [ Person
                (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
                (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
-               (date "1890-01-01")
+               (date "01/01/1890")
                "Arm"
                "Ca:r,r. B."
                ""
@@ -129,7 +129,7 @@ spec = do
            (Person
               Nothing
               (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
-              (date "1990-01-02")
+              (date "02/01/1990")
               "Antonio Armando"
               "Carrascosa Bedulia"
               "El Mozo"
@@ -137,7 +137,7 @@ spec = do
            [ Person
                (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
                (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
-               (date "1990-01-01")
+               (date "01/01/1990")
                "Arm"
                "Ca:r,r. B."
                ""
@@ -150,7 +150,7 @@ spec = do
            (Person
               Nothing
               (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
-              (date "1990-01-02")
+              (date "02/01/1990")
               "Antonio Armando"
               "Carrascosa Bedulia"
               "El Mozo"
@@ -158,7 +158,7 @@ spec = do
            [ Person
                (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
                (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
-               (date "1990-01-01")
+               (date "01/01/1990")
                "Arm"
                "Ca:r,r. B."
                ""
@@ -171,7 +171,7 @@ spec = do
            (Person
               Nothing
               (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
-              (date "1900-01-01")
+              (date "01/01/1900")
               "Antonio Armando"
               "Carrascosa Bedulia"
               "El Mozo"
@@ -179,7 +179,7 @@ spec = do
            [ Person
                (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
                (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
-               (date "2010-01-01")
+               (date "01/01/2010")
                "Arm"
                "Ca:r,r. B."
                ""
@@ -192,7 +192,7 @@ spec = do
            [ Person
                (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
                (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
-               (date "2010-01-01")
+               (date "01/01/2010")
                "Arm"
                "Ca:r,r. B."
                ""
@@ -200,7 +200,7 @@ spec = do
            , Person
                Nothing
                (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
-               (date "1900-01-01")
+               (date "01/01/1900")
                "Antonio Armando"
                "Carrascosa Bedulia"
                "El Mozo"
@@ -213,7 +213,7 @@ spec = do
            (Person
               Nothing
               (returnM . fromString $ "beef9f7c-16bb-4e11-a2ec-493a9f555a7e")
-              (date "1900-01-01")
+              (date "01/01/1900")
               "Antonio Armando"
               "Carrascosa Bedulia"
               "El Mozo"
@@ -221,7 +221,7 @@ spec = do
            [ Person
                (Just $ returnM . fromString $ "4187f6e2-97b5-4cd9-bd48-1a397f78cc55")
                (returnM . fromString $ "afabb4e3-7094-4131-adb3-7e5ed40859bb")
-               (date "1920-01-01")
+               (date "01/01/1920")
                "Arm"
                "Ca:r,r. B."
                ""

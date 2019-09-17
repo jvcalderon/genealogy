@@ -35,8 +35,8 @@ getBirthFromStringList xs = do
         Just
           (Birth
              uid
-             (date (xs !! 1))
-             (fromString (xs !! 2))
+             (date (xs !! 2))
+             (fromString (xs !! 1))
              (xs !! 3)
              (fromString (xs !! 4))
              (xs !! 5)

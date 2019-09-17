@@ -12,7 +12,7 @@ consD :: String -> String
 consD x
   | x == "dUid" = "61920c27-9f55-4d69-92e0-538824bdd349"
   | x == "persUid" = "7d3830b2-2eb2-11e9-9659-d663bd873d93"
-  | x == "date" = "2010-10-10"
+  | x == "date" = "10/10/2010"
   | x == "name" = "Armando"
   | x == "surname" = "Guadarrama"
   | x == "year" = "1220"
