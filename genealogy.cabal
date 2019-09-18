@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d6f7c9065f67c08b3d7529adf796936ed0f093eb0f7d4bd13aeaf11f703a6916
+-- hash: 74df68dba6167e67f849421e7243d5e9bc4516fdb6009cc60af2eb11f4e8e49d
 
 name:           genealogy
 version:        0.1.0.0
@@ -52,6 +52,7 @@ library
       Data.MarriageDoc
       Data.Person
       Data.Utils
+      Log
       Main
       Paths_genealogy
   default-language: Haskell2010
@@ -79,6 +80,7 @@ executable genealogy
       Data.MarriageDoc
       Data.Person
       Data.Utils
+      Log
       Matcher
       Parser
       Uid
